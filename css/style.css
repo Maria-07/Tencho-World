@@ -19,6 +19,10 @@ header{
     margin-top: 3em;
 }
 
+header span{
+    font-size: 1.5em;
+}
+
 .header-span{
     color:#8267BE;
     font-size: 1.5em;
@@ -46,4 +50,8 @@ header{
 
 .display-phone{
     margin: 8em 0;
+}
+
+ul.others{
+    list-style: none;
 }

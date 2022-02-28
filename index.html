@@ -16,29 +16,39 @@
 <body class="container">
     <!-- shop name  -->
     <header class="container">
-        <h1 class="text-center my-4 fw-bold">Tencho <span class="header-span">World</span> </h1>
+        <h1 class="text-center my-4 fw-bold"><span>T</span>encho <span class="header-span">World</span> </h1>
     </header>
 
 
-    <!-- serch box  -->
-    <div class="input-group mb-3 w-50 mx-auto">
-        <input id="search-box" type="text" class="form-control" placeholder="Search your mobile phone"
-            aria-label="Recipient's username" aria-describedby="search-button">
-        <button onclick="searchPhone()" class="btn" type="button" id="search-button">Search</button>
-    </div>
-
-    <!-- Error message -->
-    <div>
-        <p id="error-message" class="text-danger text-center fw-normal">Something went wrong. Please try again !!!</p>
-    </div>
-
-    <!-- display phone  -->
-    <section class="display-phone container">
-        <div id="search-phone" class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-            </div>
+    <main>
+        <!-- serch box  -->
+        <div class="input-group mb-3 w-50 mx-auto">
+            <input id="search-box" type="text" class="form-control" placeholder="Search your mobile phone"
+                aria-label="Recipient's username" aria-describedby="search-button">
+            <button onclick="searchPhone()" class="btn" type="button" id="search-button">Search</button>
         </div>
-    </section>
+
+        <!-- Error message -->
+        <div>
+            <p id="error-message" class="text-danger text-center fw-normal">Something went wrong. Please try again !!!
+            </p>
+        </div>
+
+        <!-- display phone details  -->
+        <section class="phone-detail mt-5">
+            <div id="phone-details" class="w-50 mx-auto">
+            </div>
+        </section>
+
+        <!-- display phone  -->
+        <section class="display-phone">
+            <div id="search-phone" class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                </div>
+            </div>
+        </section>
+    </main>
+
 
     <!-- javaScript links  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
