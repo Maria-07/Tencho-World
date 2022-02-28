@@ -20,25 +20,34 @@ const searchPhone = () => {
 // display data 
 const displaySearchPhone = phoneData => {
     const searchPhone = document.getElementById('search-phone');
-    phoneData.forEach(phone => {
-        console.log(phone);
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML = `
-            <div class="card h-100">
-                    <img src="${phone.image}" class="card-img-top" alt="phone Image">
+    searchPhone.textContent = '';
+
+    if (phoneData.length == 0) {
+        errorMessage();
+        // console.log('phone to nai');
+    } else {
+        phoneData.forEach(phone => {
+            console.log(phone);
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = ` 
+                <div class = "card h-100 " >
+                    <img src="${phone.image}" class="image-fluid card-img-top p-5" alt="phone Image">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+                        <h3 class="card-title"> ${phone.phone_name}</h3>
+                        <p class="card-text"><h5>Brand Name : ${phone.brand}</h5></p>
                     </div>
+                    <button class="w-50 m-3">More Info</button>
                     <div class="card-footer">
                         <small class="text-muted">Last updated 3 mins ago</small>
                     </div>
                 </div>
-        `;
-        searchPhone.appendChild(div);
-    })
+                `;
+            searchPhone.appendChild(div);
+        })
+    }
+
+
 }
 
 // error msg
