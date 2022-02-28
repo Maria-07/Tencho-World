@@ -35,3 +35,9 @@ header{
     background-color: #8267BE;
     color: aliceblue;
 }
+
+/* error handaling  */
+
+#error-message{
+    display: none;
+}
