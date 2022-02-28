@@ -36,8 +36,14 @@ header{
     color: aliceblue;
 }
 
-/* error handaling  */
+/* error handeling  */
 
 #error-message{
     display: none;
+}
+
+/* display phone part  */
+
+.display-phone{
+    margin: 8em 0;
 }
