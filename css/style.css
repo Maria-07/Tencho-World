@@ -47,6 +47,10 @@ header span{
     color: aliceblue;
 }
 
+#spiner{
+    display: none;
+}
+
 /* error handeling  */
 
 #error-message{

@@ -4,7 +4,6 @@ const searchPhone = () => {
     const searchText = searchBox.value;
     console.log(searchText);
     searchBox.value = '';
-    
 
     if (searchText == '') {
         errorMessage();
@@ -19,6 +18,12 @@ const searchPhone = () => {
     }
 }
 
+//spiner part 
+
+const spinner = displaySpinner => {
+    document.getElementById('spiner').style.display = displaySpinner;
+}
+
 // error msg
 const errorMessage = () => {
     document.getElementById('error-message').style.display = 'block';
@@ -26,13 +31,16 @@ const errorMessage = () => {
 
 let resultNumber;
 let phoneDetails;
+
 // display data 
 const displaySearchPhone = phoneData => {
     //  console.log(phoneData.length);
-
     // show search results number 
     resultNumber = document.getElementById('result-numbers');
     resultNumber.innerText = `About ${phoneData.length} results found`;
+
+    // show spinner 
+    spinner('block');
 
     phoneData = phoneData.slice(0, 20);
     // console.log(phoneData);
@@ -44,7 +52,7 @@ const displaySearchPhone = phoneData => {
         // console.log('phone to nai');
     } else {
         phoneData.forEach(phone => {
-            
+
             // console.log(phone);
             const div = document.createElement('div');
             div.classList.add('col');
@@ -59,8 +67,8 @@ const displaySearchPhone = phoneData => {
                     </div>
                 `;
             searchPhone.appendChild(div);
-        })
-        // phoneDetails.textContent = '';
+        });
+        spinner('none');
     }
 }
 
@@ -99,6 +107,7 @@ const displayPhoneDetails = phoneDetail => {
 
     }
 
+    //relase Date
     const releaseDate = phoneDetail.releaseDate ? phoneDetail.releaseDate : 'Release Date is not available';
 
     const sensorList = phoneDetail.mainFeatures.sensors;
@@ -110,19 +119,16 @@ const displayPhoneDetails = phoneDetail => {
             <div class="card-body">
                 <h4 style = "color:#8267BE;">Name : ${phoneDetail.name}</h4>
                 <h6>Brand Name : ${phoneDetail.brand}</h6>
-                <h6>Brand Name : ${phoneDetail.brand}</h6>
             </div>
 
             <div class="mx-3 mb-5">
                 <h5>MainFeatures :</h5>
-
                 <h6><u>Storage</u> : ${phoneDetail.mainFeatures.storage}.</h6>
                 <h6><u>DisplaySize</u> : ${phoneDetail.mainFeatures.displaySize}.</h6>
                 <h6><u>ChipSet</u> : ${phoneDetail.mainFeatures.chipSet}.</h6>
                 <h6><u>Memory</u> : ${phoneDetail.mainFeatures.memory}.</h6>
 
                 <h5>Others : </h5>
-
                 <h6><u>WLAN</u> : ${WLAN}</h6>
                 <h6><u>Bluetooth</u> : ${Bluetooth}</h6>
                 <h6><u>GPS</u> : ${GPS}</h6>
@@ -130,7 +136,6 @@ const displayPhoneDetails = phoneDetail => {
                 <h6><u>Radio</u> : ${Radio}</h6>
                 <h6><u>USB</u> : ${USB}</h6>
                 <h6><u>Sensors</u> : ${sensorList.join(' , ')}</h6>
-
             </div> 
             
              <div style = "
