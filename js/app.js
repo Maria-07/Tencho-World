@@ -13,7 +13,8 @@ const searchPhone = () => {
         // console.log(url);
         fetch(url)
             .then(res => res.json())
-            .then(data => displaySearchPhone(data.data));
+            .then(data => displaySearchPhone(data.data))
+            .catch(error => errorMessage(error));
     }
 }
 
@@ -81,9 +82,7 @@ const displayPhoneDetails = phoneDetail => {
                 <h6><u>DisplaySize</u> : ${phoneDetail.mainFeatures.displaySize}.</h6>
                 <h6><u>ChipSet</u> : ${phoneDetail.mainFeatures.chipSet}.</h6>
                 <h6><u>Memory</u> : ${phoneDetail.mainFeatures.memory}.</h6>
-            
 
-           
                 <h5>Others : </h5>
 
                 <h6><u>WLAN</u> : ${phoneDetail.others.WLAN}.</h6>
@@ -92,17 +91,39 @@ const displayPhoneDetails = phoneDetail => {
                 <h6><u>NFC</u> : ${phoneDetail.others.NFC}.</h6>
                 <h6><u>Radio</u> : ${phoneDetail.others.Radio}.</h6>
                 <h6><u>USB</u> : ${phoneDetail.others.USB}.</h6>
-                
-            </div>
-
-            <div style = "color:#fff;
-                        font-size:1.2em;
-                        text-align:center;
-                        background-color:#8267BE;
-                        padding: 5px 0;
-                        "
-            >${phoneDetail.releaseDate}</div>
+            </div>   
     `;
-    phoneDetails.appendChild(div);
 
+    // console.log(phoneDetail.releaseDate);
+    // const relaseDiv = document.createElement('div');
+    // console.log(phoneDetail.releaseDate);
+    // if (phoneDetail.releaseDate == '') {
+    //     console.log('relasedata nai');
+    // } else {
+    //     console.log(phoneDetail.releaseDate);
+    // }
+
+    /*
+    const p = document.createElement('p');
+    const sensors = phoneDetail.mainFeatures.sensors;
+    console.log(sensors);
+    for (let i = 0; i < sensors.length; i++)
+        p.innerText = ((i + 1) + ": " + sensors[i]);
+    phoneDetails.appendChild(p);
+    // li.innerHTML 
+
+
+    relaseDiv.classList.add('card');
+    relaseDiv.innerHTML = `
+        <div style = "color:#000;
+        font-size: 1.2 em;
+        text-align: center;
+        background -color: #8267BE;
+        padding: 5px 0;">${phoneDetail.releaseDate}</div>
+        `
+    
+    */
+
+    phoneDetails.appendChild(div);
+    // phoneDetails.appendChild(relaseDiv);
 }
