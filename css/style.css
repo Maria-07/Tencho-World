@@ -47,6 +47,8 @@ header span{
     color: aliceblue;
 }
 
+/* spiner add  */
+
 #spiner{
     display: none;
 }
@@ -72,7 +74,7 @@ ul.others{
     width: 50%;
 }
 
-/* for phone  */
+/* for phone responsive */
 
 @media only screen and (max-width: 688px) {
  
