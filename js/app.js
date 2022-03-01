@@ -1,3 +1,8 @@
+//spiner part 
+const spinner = displaySpinner => {
+    document.getElementById('spiner').style.display = displaySpinner;
+}
+
 // search box 
 const searchPhone = () => {
     const searchBox = document.getElementById('search-box');
@@ -5,8 +10,12 @@ const searchPhone = () => {
     console.log(searchText);
     searchBox.value = '';
 
+    // show spinner 
+    spinner('block');
+
     if (searchText == '') {
         errorMessage();
+        spinner('none');
     } else {
         document.getElementById('error-message').style.display = 'none';
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -16,12 +25,6 @@ const searchPhone = () => {
             .then(data => displaySearchPhone(data.data))
             .catch(error => errorMessage(error));
     }
-}
-
-//spiner part 
-
-const spinner = displaySpinner => {
-    document.getElementById('spiner').style.display = displaySpinner;
 }
 
 // error msg
@@ -39,8 +42,7 @@ const displaySearchPhone = phoneData => {
     resultNumber = document.getElementById('result-numbers');
     resultNumber.innerText = `About ${phoneData.length} results found`;
 
-    // show spinner 
-    spinner('block');
+
 
     phoneData = phoneData.slice(0, 20);
     // console.log(phoneData);
@@ -68,8 +70,9 @@ const displaySearchPhone = phoneData => {
                 `;
             searchPhone.appendChild(div);
         });
-        spinner('none');
     }
+    // remove spinner
+    spinner('none');
 }
 
 // Load phone details 
