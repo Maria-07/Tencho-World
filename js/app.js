@@ -26,7 +26,7 @@ const errorMessage = () => {
 
 // display data 
 const displaySearchPhone = phoneData => {
-    phoneData = phoneData.slice(0,20);
+    phoneData = phoneData.slice(0, 20);
     console.log(phoneData);
     const searchPhone = document.getElementById('search-phone');
     searchPhone.textContent = '';
@@ -70,7 +70,7 @@ const LoadPhoneDetails = phoneID => {
 
 // display Phone Deatails
 const displayPhoneDetails = phoneDetail => {
-    console.log(phoneDetail);
+    // console.log(phoneDetail);
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
@@ -89,6 +89,13 @@ const displayPhoneDetails = phoneDetail => {
     }
 
     const releaseDate = phoneDetail.releaseDate ? phoneDetail.releaseDate : 'Release Date is not available';
+
+    const sensorList = phoneDetail.mainFeatures.sensors;
+    // console.log(sensorList);
+    // console.log(sensorList.join(' , '));
+    // sensorList.forEach(sensor => {
+    //     console.log(sensor);
+    // })
 
     div.innerHTML = `
         <img src="${phoneDetail.image}" class=" card-img-top p-5" alt="...">
@@ -114,6 +121,8 @@ const displayPhoneDetails = phoneDetail => {
                 <h6><u>NFC</u> : ${NFC}</h6>
                 <h6><u>Radio</u> : ${Radio}</h6>
                 <h6><u>USB</u> : ${USB}</h6>
+                <h6><u>Sensors</u> : ${sensorList.join(' , ')}</h6>
+
             </div> 
             
              <div style = "
@@ -124,38 +133,5 @@ const displayPhoneDetails = phoneDetail => {
              padding:5px 0;"> ${releaseDate} </div>
         `;
 
-
-
-    // console.log(phoneDetail.releaseDate);
-    // const relaseDiv = document.createElement('div');
-    // console.log(phoneDetail.releaseDate);
-    // if (phoneDetail.releaseDate == '') {
-    //     console.log('relasedata nai');
-    // } else {
-    //     console.log(phoneDetail.releaseDate);
-    // }
-
-    /*
-    const p = document.createElement('p');
-    const sensors = phoneDetail.mainFeatures.sensors;
-    console.log(sensors);
-    for (let i = 0; i < sensors.length; i++)
-        p.innerText = ((i + 1) + ": " + sensors[i]);
-    phoneDetails.appendChild(p);
-    // li.innerHTML 
-
-
-    relaseDiv.classList.add('card');
-    relaseDiv.innerHTML = `
-        <div style = "color:#000;
-        font-size: 1.2 em;
-        text-align: center;
-        background -color: #8267BE;
-        padding: 5px 0;">${phoneDetail.releaseDate}</div>
-        `
-    
-    */
-
     phoneDetails.appendChild(div);
-    // phoneDetails.appendChild(relaseDiv);
 }
