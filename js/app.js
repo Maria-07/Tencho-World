@@ -4,6 +4,7 @@ const searchPhone = () => {
     const searchText = searchBox.value;
     console.log(searchText);
     searchBox.value = '';
+    
 
     if (searchText == '') {
         errorMessage();
@@ -23,11 +24,18 @@ const errorMessage = () => {
     document.getElementById('error-message').style.display = 'block';
 }
 
-
+let resultNumber;
+let phoneDetails;
 // display data 
 const displaySearchPhone = phoneData => {
+    //  console.log(phoneData.length);
+
+    // show search results number 
+    resultNumber = document.getElementById('result-numbers');
+    resultNumber.innerText = `About ${phoneData.length} results found`;
+
     phoneData = phoneData.slice(0, 20);
-    console.log(phoneData);
+    // console.log(phoneData);
     const searchPhone = document.getElementById('search-phone');
     searchPhone.textContent = '';
 
@@ -36,11 +44,12 @@ const displaySearchPhone = phoneData => {
         // console.log('phone to nai');
     } else {
         phoneData.forEach(phone => {
+            
             // console.log(phone);
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = ` 
-                <div class = "card h-100 " >
+                <div class = "card h-100 shadow">
                     <img src="${phone.image}" class="image-fluid card-img-top p-5" alt="phone Image">
                     <div class="card-body">
                         <h3 class="card-title"> ${phone.phone_name}</h3>
@@ -51,11 +60,13 @@ const displaySearchPhone = phoneData => {
                 `;
             searchPhone.appendChild(div);
         })
+        // phoneDetails.textContent = '';
     }
 }
 
 // Load phone details 
 const LoadPhoneDetails = phoneID => {
+    resultNumber.innerText = '';
     const url = `https://openapi.programming-hero.com/api/phone/${phoneID}`;
     // console.log(url);
     fetch(url)
@@ -71,7 +82,7 @@ const LoadPhoneDetails = phoneID => {
 // display Phone Deatails
 const displayPhoneDetails = phoneDetail => {
     // console.log(phoneDetail);
-    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
@@ -93,9 +104,6 @@ const displayPhoneDetails = phoneDetail => {
     const sensorList = phoneDetail.mainFeatures.sensors;
     // console.log(sensorList);
     // console.log(sensorList.join(' , '));
-    // sensorList.forEach(sensor => {
-    //     console.log(sensor);
-    // })
 
     div.innerHTML = `
         <img src="${phoneDetail.image}" class=" card-img-top p-5" alt="...">
@@ -106,7 +114,7 @@ const displayPhoneDetails = phoneDetail => {
             </div>
 
             <div class="mx-3 mb-5">
-                <h5>mainFeatures :</h5>
+                <h5>MainFeatures :</h5>
 
                 <h6><u>Storage</u> : ${phoneDetail.mainFeatures.storage}.</h6>
                 <h6><u>DisplaySize</u> : ${phoneDetail.mainFeatures.displaySize}.</h6>

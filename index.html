@@ -13,20 +13,21 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body class="container">
+<body>
     <!-- shop name  -->
     <header class="container">
         <h1 class="text-center my-4 fw-bold"><span>T</span>encho <span class="header-span">World</span> </h1>
     </header>
 
 
-    <main>
+    <main class="container">
         <!-- serch box  -->
-        <div class="input-group mb-3 w-50 mx-auto">
+        <div class="input-group mb-3 search-part mx-auto">
             <input id="search-box" type="text" class="form-control" placeholder="Search your mobile phone"
                 aria-label="Recipient's username" aria-describedby="search-button">
             <button onclick="searchPhone()" class="btn" type="button" id="search-button">Search</button>
         </div>
+        <div id="result-numbers" class="text-center"></div>
 
         <!-- Error message -->
         <div>
@@ -36,8 +37,7 @@
 
         <!-- display phone details  -->
         <section class="phone-detail mt-5">
-            <div id="phone-details" class="w-50 mx-auto">
-                <div id="arrPrint"></div>
+            <div id="phone-details" class="phone-details mx-auto shadow-sm">
             </div>
         </section>
 
