@@ -23,8 +23,11 @@ const errorMessage = () => {
     document.getElementById('error-message').style.display = 'block';
 }
 
+
 // display data 
 const displaySearchPhone = phoneData => {
+    phoneData = phoneData.slice(0,20);
+    console.log(phoneData);
     const searchPhone = document.getElementById('search-phone');
     searchPhone.textContent = '';
 
@@ -58,6 +61,11 @@ const LoadPhoneDetails = phoneID => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayPhoneDetails(data.data));
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
 
 // display Phone Deatails
@@ -67,6 +75,21 @@ const displayPhoneDetails = phoneDetail => {
     phoneDetails.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
+
+    const et = '-';
+    let {
+        WLAN = et,
+            Bluetooth = et,
+            GPS = et,
+            NFC = et,
+            Radio = et,
+            USB = et
+    } = phoneDetail.others ? phoneDetail.others : {
+
+    }
+
+    const releaseDate = phoneDetail.releaseDate ? phoneDetail.releaseDate : 'Release Date is not available';
+
     div.innerHTML = `
         <img src="${phoneDetail.image}" class=" card-img-top p-5" alt="...">
             <div class="card-body">
@@ -75,7 +98,7 @@ const displayPhoneDetails = phoneDetail => {
                 <h6>Brand Name : ${phoneDetail.brand}</h6>
             </div>
 
-             <div class="mx-3 mb-5">
+            <div class="mx-3 mb-5">
                 <h5>mainFeatures :</h5>
 
                 <h6><u>Storage</u> : ${phoneDetail.mainFeatures.storage}.</h6>
@@ -85,14 +108,23 @@ const displayPhoneDetails = phoneDetail => {
 
                 <h5>Others : </h5>
 
-                <h6><u>WLAN</u> : ${phoneDetail.others.WLAN}.</h6>
-                <h6><u>Bluetooth</u> : ${phoneDetail.others.Bluetooth}.</h6>
-                <h6><u>GPS</u> : ${phoneDetail.others.GPS}.</h6>
-                <h6><u>NFC</u> : ${phoneDetail.others.NFC}.</h6>
-                <h6><u>Radio</u> : ${phoneDetail.others.Radio}.</h6>
-                <h6><u>USB</u> : ${phoneDetail.others.USB}.</h6>
-            </div>   
-    `;
+                <h6><u>WLAN</u> : ${WLAN}</h6>
+                <h6><u>Bluetooth</u> : ${Bluetooth}</h6>
+                <h6><u>GPS</u> : ${GPS}</h6>
+                <h6><u>NFC</u> : ${NFC}</h6>
+                <h6><u>Radio</u> : ${Radio}</h6>
+                <h6><u>USB</u> : ${USB}</h6>
+            </div> 
+            
+             <div style = "
+             color:#fff;
+             font-size:1.2 em;
+             text-align:center;
+             background-color: #8267BE;
+             padding:5px 0;"> ${releaseDate} </div>
+        `;
+
+
 
     // console.log(phoneDetail.releaseDate);
     // const relaseDiv = document.createElement('div');
